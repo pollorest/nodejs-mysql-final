@@ -1,14 +1,14 @@
-/*const express = require('express');
+const express = require('express');
 const router = express.Router();
 
 /* GET home page. */
-/*router.get('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-module.exports = router;8*/
+module.exports = router;
 
-const express = require('express');
+/*const express = require('express');
 const app = express();
 
 // Configurar EJS como el motor de plantillas
@@ -24,4 +24,4 @@ app.get('/ver', (req, res) => {
 // Iniciar el servidor
 app.listen(80, () => {
   console.log('Servidor iniciado en el puerto 80');
-});
+});*/

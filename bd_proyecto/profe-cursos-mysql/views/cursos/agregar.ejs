@@ -1,20 +1,20 @@
 <%- include("../header"); %>
 <div class="col-12">
-    <h1>Agregar producto</h1>
-    <form method="post" action="/productos/insertar">
+    <h1>Agregar curso</h1>
+    <form method="post" action="/cursos/insertar">
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input required id="nombre" placeholder="Nombre del producto" class="form-control" type="text"
+            <input required id="nombre" placeholder="Nombre del curso" class="form-control" type="text"
                 name="nombre">
         </div>
         <div class="form-group">
             <label for="precio">Precio</label>
-            <input required id="precio" placeholder="Precio del producto" class="form-control" type="number"
+            <input required id="precio" placeholder="Precio del curso" class="form-control" type="number"
                 name="precio">
         </div>
         <div class="form-group">
             <button class="btn btn-success">Guardar</button>
-            &nbsp;<a href="/productos" class="btn btn-primary">Volver</a>
+            &nbsp;<a href="/cursos" class="btn btn-primary">Volver</a>
         </div>
     </form>
 </div>
