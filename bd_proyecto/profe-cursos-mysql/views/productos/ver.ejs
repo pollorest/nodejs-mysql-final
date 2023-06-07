@@ -1,0 +1,75 @@
+<%- include("../header"); %>
+<div class="col-12">
+    <h1>Cursos</h1>
+    <a href="/cursos/agregar" class="btn btn-primary mb-2">Agregar</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cursos.forEach(curso => { %>
+            <tr>
+                <td><%= curso.nombre %></td>
+                <td><%= curso.precio %></td>
+                <td>
+                    <a href="/cursos/editar/<%= curso.id %>" class="btn btn-warning">
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <a href="/cursos/eliminar/<%= curso.id %>" class="btn btn-danger">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+            <% })%>
+        </tbody>
+    </table>
+</div>
+
+<div class="col-12">
+    <h1>Profesores</h1>
+    <a href="/profesores/agregar" class="btn btn-primary mb-2">Agregar</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Contraseña</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Área Principal</th>
+                <th>Área Alternativa</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% profesores.forEach(profesor => { %>
+            <tr>
+                <td><%= profesor.nombre %></td>
+                <td><%= profesor.contraseña %></td>
+                <td><%= profesor.telefono %></td>
+                <td><%= profesor.email %></td>
+                <td><%= profesor.areaPrincipal %></td>
+                <td><%= profesor.areaAlternativa %></td>
+                <td>
+                    <a href="/profesores/editar/<%= profesor.id %>" class="btn btn-warning">
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <a href="/profesores/eliminar/<%= profesor.id %>" class="btn btn-danger">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+            <% })%>
+        </tbody>
+    </table>
+</div>
+<%- include("../footer"); %>
