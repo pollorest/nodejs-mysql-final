@@ -6,9 +6,9 @@ const profesorModel = require("../models/profesor");
 router.get('/', function (req, res, next) {
     profesorModel
         .obtener()
-        .then(profesores => {
+        .then(profesor => {
             res.render("profesor/ver", {
-                profesores: profesores,
+                profesor: profesor,
             });
         })
         .catch(err => {
