@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const cursoModel = require("../models/curso");
+const cursoModel = require("../models/cursos");
 
 router.get('/', function (req, res, next) {
     cursoModel
@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/agregar', function (req, res, next) {
-    res.render("curso/agregar");
+    res.render("cursos/agregar");
 });
 
 router.post('/insertar', function (req, res, next) {
@@ -32,7 +32,7 @@ router.post('/insertar', function (req, res, next) {
     cursoModel
         .insertar(curso.nombre, curso.precio)
         .then(idCursoInsertado => {
-            res.redirect("/cursos");
+            res.redirect("/curso");
         })
         .catch(err => {
             return res.status(500).send("Error insertando curso");
@@ -43,7 +43,7 @@ router.get('/eliminar/:id', function (req, res, next) {
     cursoModel
         .eliminar(req.params.id)
         .then(() => {
-            res.redirect("/cursos");
+            res.redirect("/curso");
         })
         .catch(err => {
             return res.status(500).send("Error eliminando curso");
