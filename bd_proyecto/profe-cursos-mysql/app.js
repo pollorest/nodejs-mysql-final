@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRoutes);
-app.use('/cursos', cursoRoutes);
+app.use('/cursos', cursosRoutes);
 app.use('/profesor', profesorRoutes);
 
 // catch 404 and forward to error handler
