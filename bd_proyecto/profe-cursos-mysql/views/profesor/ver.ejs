@@ -1,34 +1,15 @@
-<%- include("../header"); %>
-<div class="col-12">
-    <h1>Profesores</h1>
-    <a href="/profesor/agregar" class="btn btn-primary mb-2">Agregar</a>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Área</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% profesores.forEach(profesor => { %>
-            <tr>
-                <td><%= profesor.nombre %></td>
-                <td><%= profesor.area %></td>
-                <td>
-                    <a href="/profesor/editar/<%= profesor.id %>" class="btn btn-warning">
-                        Editar
-                    </a>
-                </td>
-                <td>
-                    <a href="/profesor/eliminar/<%= profesor.id %>" class="btn btn-danger">
-                        Eliminar
-                    </a>
-                </td>
-            </tr>
-            <% })%>
-        </tbody>
-    </table>
-</div>
-<%- include("../footer"); %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Profesores</title>
+</head>
+<body>
+    <h1>Listado de Profesores</h1>
+    <ul>
+    <% profesores.forEach(profesor => { %>
+        <li><%= profesor.nombre %> - <%= profesor.telefono %> - <%= profesor.email %></li>
+    <% }); %>
+    </ul>
+</body>
+</html>

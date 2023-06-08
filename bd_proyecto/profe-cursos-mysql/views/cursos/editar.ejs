@@ -1,24 +1,18 @@
-<%- include("../header"); %>
-<div class="col-12">
-    <h1>Editar curso</h1>
-    <form method="post" action="/cursos/actualizar">
-
-        <input value="<%= curso.id %>" name="id" type="hidden">
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input value="<%= curso.nombre %>" required id="nombre" placeholder="Nombre del curso"
-                class="form-control" type="text" name="nombre">
-        </div>
-        <div class="form-group">
-            <label for="precio">Precio</label>
-            <input value="<%= curso.precio %>" required id="precio" placeholder="Precio del curso"
-                class="form-control" type="number" name="precio">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-success">Guardar</button>
-            &nbsp;<a href="/cursos" class="btn btn-primary">Volver</a>
-        </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Editar Curso</title>
+</head>
+<body>
+    <h1>Editar Curso</h1>
+    <form action="/cursos/actualizar" method="post">
+    <input type="hidden" name="id" value="<%= curso.Id %>">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" value="<%= curso.Nombre %>" required><br>
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" name="precio" value="<%= curso.Precio %>" required><br>
+    <input type="submit" value="Actualizar">
     </form>
-</div>
-<%- include("../footer"); %>
-
+</body>
+</html>
