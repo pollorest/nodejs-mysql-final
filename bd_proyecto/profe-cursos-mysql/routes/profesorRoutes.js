@@ -80,3 +80,5 @@ router.post('/actualizar/', function (req, res, next) {
 });
 
 module.exports = router;
+
+// Path: bd_proyecto\profe-cursos-mysql\models\profesor.js
