@@ -1,53 +1,63 @@
 const conexion = require("../conexion");
 
 module.exports = {
-    insertar(curso) {
+    insertar(cursos) {
         return new Promise((resolve, reject) => {
-            conexion.query(`INSERT INTO Cursos (Categoria, fecha_inicio, fecha_creacion, fecha_fin, Precio, Semestre, Nombre, Identificador, Id, Url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-                [curso.Categoria, curso.fecha_inicio, curso.fecha_creacion, curso.fecha_fin, curso.Precio, curso.Semestre, curso.Nombre, curso.Identificador, curso.Id, curso.Url],
+            conexion.query(
+                `INSERT INTO cursoss (Nombre, Precio) VALUES (?, ?)`,
+                [cursos.nombre, cursos.precio],
                 (err, resultados) => {
                     if (err) reject(err);
                     else resolve(resultados.insertId);
-                });
+                }
+            );
         });
     },
     obtener() {
         return new Promise((resolve, reject) => {
-            conexion.query(`SELECT Nombre, Categoria, Precio FROM Cursos`,
+            conexion.query(
+                `SELECT Nombre, Precio FROM cursoss`,
                 (err, resultados) => {
                     if (err) reject(err);
                     else resolve(resultados);
-                });
+                }
+            );
         });
     },
     obtenerPorId(id) {
         return new Promise((resolve, reject) => {
-            conexion.query(`SELECT * FROM Cursos WHERE Identificador = ?`,
+            conexion.query(
+                `SELECT Nombre, Precio FROM cursoss WHERE id = ?`,
                 [id],
                 (err, resultados) => {
                     if (err) reject(err);
                     else resolve(resultados[0]);
-                });
+                }
+            );
         });
     },
-    actualizar(id, curso) {
+    actualizar(id, cursos) {
         return new Promise((resolve, reject) => {
-            conexion.query(`UPDATE Cursos SET Categoria = ?, fecha_inicio = ?, fecha_creacion = ?, fecha_fin = ?, Precio = ?, Semestre = ?, Nombre = ?, Identificador = ?, Id = ?, Url = ? WHERE Identificador = ?`,
-                [curso.Categoria, curso.fecha_inicio, curso.fecha_creacion, curso.fecha_fin, curso.Precio, curso.Semestre, curso.Nombre, curso.Identificador, curso.Id, curso.Url, id],
+            conexion.query(
+                `UPDATE cursoss SET Nombre = ?, Precio = ? WHERE id = ?`,
+                [cursos.nombre, cursos.precio, id],
                 (err) => {
                     if (err) reject(err);
                     else resolve();
-                });
+                }
+            );
         });
     },
     eliminar(id) {
         return new Promise((resolve, reject) => {
-            conexion.query(`DELETE FROM Cursos WHERE Identificador = ?`,
+            conexion.query(
+                `DELETE FROM cursoss WHERE id = ?`,
                 [id],
                 (err) => {
                     if (err) reject(err);
                     else resolve();
-                });
+                }
+            );
         });
     },
 };

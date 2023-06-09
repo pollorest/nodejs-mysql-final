@@ -1,23 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-const cursoModel = require("../models/cursos");
+const cursosModel = require("../models/cursos");
 
 router.get('/', function (req, res, next) {
-    cursoModel
+    cursosModel
         .obtener()
-        .then(cursos => {
-            res.render("curso/ver", {
-                cursos: cursos,
+        .then(cursoss => {
+            res.render("cursoss/ver", {
+                cursoss: cursoss,
             });
         })
         .catch(err => {
-            return res.status(500).send("Error obteniendo cursos");
+            return res.status(500).send("Error obteniendo cursoss");
         });
 });
 
 router.get('/agregar', function (req, res, next) {
-    res.render("cursos/agregar");
+    res.render("cursoss/agregar");
 });
 
 router.post('/insertar', function (req, res, next) {
@@ -25,45 +25,41 @@ router.post('/insertar', function (req, res, next) {
     if (!nombre || !precio) {
         return res.status(500).send("No hay nombre o precio");
     }
-    const curso = {
-        nombre: nombre,
-        precio: precio
-    };
-    cursoModel
-        .insertar(curso.nombre, curso.precio)
-        .then(idCursoInsertado => {
-            res.redirect("/curso");
+    cursosModel
+        .insertar({ nombre, precio })
+        .then(idcursosInsertado => {
+            res.redirect("/cursoss");
         })
         .catch(err => {
-            return res.status(500).send("Error insertando curso");
+            return res.status(500).send("Error insertando cursos");
         });
 });
 
 router.get('/eliminar/:id', function (req, res, next) {
-    cursoModel
+    cursosModel
         .eliminar(req.params.id)
         .then(() => {
-            res.redirect("/curso");
+            res.redirect("/cursoss");
         })
         .catch(err => {
-            return res.status(500).send("Error eliminando curso");
+            return res.status(500).send("Error eliminando cursos");
         });
 });
 
 router.get('/editar/:id', function (req, res, next) {
-    cursoModel
+    cursosModel
         .obtenerPorId(req.params.id)
-        .then(curso => {
-            if (curso) {
-                res.render("curso/editar", {
-                    curso: curso,
+        .then(cursos => {
+            if (cursos) {
+                res.render("cursoss/editar", {
+                    cursos: cursos,
                 });
             } else {
-                return res.status(500).send("No existe curso con ese id");
+                return res.status(500).send("No existe cursos con ese id");
             }
         })
         .catch(err => {
-            return res.status(500).send("Error obteniendo curso");
+            return res.status(500).send("Error obteniendo cursos");
         });
 });
 
@@ -72,20 +68,14 @@ router.post('/actualizar/', function (req, res, next) {
     if (!nombre || !precio || !id) {
         return res.status(500).send("No hay suficientes datos");
     }
-    const curso = {
-        id: id,
-        nombre: nombre,
-        precio: precio
-    };
-    cursoModel
-        .actualizar(curso.id, curso.nombre, curso.precio)
+    cursosModel
+        .actualizar(id, { nombre, precio })
         .then(() => {
-            res.redirect("/cursos");
+            res.redirect("/cursoss");
         })
         .catch(err => {
-            return res.status(500).send("Error actualizando curso");
+            return res.status(500).send("Error actualizando cursos");
         });
 });
 
 module.exports = router;
-
