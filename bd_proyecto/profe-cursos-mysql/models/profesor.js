@@ -25,46 +25,46 @@ router.get('/detalle/:id', function (req, res, next) {
                         return res.status(404).send("No se encontró el profesor del cursos");
                     }
 
-                    // Obtener listado de estudiantes del cursos
+                    // Obtener listado de estudiante del cursos
                     estudianteModel.obtenerPorcursos(cursosId)
-                        .then(estudiantes => {
+                        .then(estudiante => {
 
-                            // Obtener listado de materialeses del cursos
+                            // Obtener listado de materiales del cursos
                             materialesModel.obtenerPorcursos(cursosId)
-                                .then(materialeses => {
+                                .then(materiales => {
 
-                                    // Obtener listado de tareass del cursos
+                                    // Obtener listado de tareas del cursos
                                     tareasModel.obtenerPorcursos(cursosId)
-                                        .then(tareass => {
+                                        .then(tareas => {
 
-                                            // Obtener listado de foros del cursos
+                                            // Obtener listado de foro del cursos
                                             foroModel.obtenerPorcursos(cursosId)
-                                                .then(foros => {
+                                                .then(foro => {
 
                                                     // Renderizar la vista con la información obtenida
                                                     res.render("cursos/detalle", {
                                                         cursos: cursos,
                                                         profesor: profesor,
-                                                        estudiantes: estudiantes,
-                                                        materialeses: materialeses,
-                                                        tareass: tareass,
-                                                        foros: foros
+                                                        estudiante: estudiante,
+                                                        materiales: materiales,
+                                                        tareas: tareas,
+                                                        foro: foro
                                                     });
                                                 })
                                                 .catch(err => {
-                                                    return res.status(500).send("Error obteniendo listado de foros");
+                                                    return res.status(500).send("Error obteniendo listado de foro");
                                                 });
                                         })
                                         .catch(err => {
-                                            return res.status(500).send("Error obteniendo listado de tareass");
+                                            return res.status(500).send("Error obteniendo listado de tareas");
                                         });
                                 })
                                 .catch(err => {
-                                    return res.status(500).send("Error obteniendo listado de materialeses");
+                                    return res.status(500).send("Error obteniendo listado de materiales");
                                 });
                         })
                         .catch(err => {
-                            return res.status(500).send("Error obteniendo listado de estudiantes");
+                            return res.status(500).send("Error obteniendo listado de estudiante");
                         });
                 })
                 .catch(err => {
