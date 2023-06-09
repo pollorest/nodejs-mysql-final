@@ -6,18 +6,18 @@ const cursosModel = require("../models/cursos");
 router.get('/', function (req, res, next) {
     cursosModel
         .obtener()
-        .then(cursoss => {
-            res.render("cursoss/ver", {
-                cursoss: cursoss,
+        .then(cursos => {
+            res.render("cursos/ver", {
+                cursos: cursos,
             });
         })
         .catch(err => {
-            return res.status(500).send("Error obteniendo cursoss");
+            return res.status(500).send("Error obteniendo cursos");
         });
 });
 
 router.get('/agregar', function (req, res, next) {
-    res.render("cursoss/agregar");
+    res.render("cursos/agregar");
 });
 
 router.post('/insertar', function (req, res, next) {
@@ -28,7 +28,7 @@ router.post('/insertar', function (req, res, next) {
     cursosModel
         .insertar({ nombre, precio })
         .then(idcursosInsertado => {
-            res.redirect("/cursoss");
+            res.redirect("/cursos");
         })
         .catch(err => {
             return res.status(500).send("Error insertando cursos");
@@ -39,7 +39,7 @@ router.get('/eliminar/:id', function (req, res, next) {
     cursosModel
         .eliminar(req.params.id)
         .then(() => {
-            res.redirect("/cursoss");
+            res.redirect("/cursos");
         })
         .catch(err => {
             return res.status(500).send("Error eliminando cursos");
@@ -51,7 +51,7 @@ router.get('/editar/:id', function (req, res, next) {
         .obtenerPorId(req.params.id)
         .then(cursos => {
             if (cursos) {
-                res.render("cursoss/editar", {
+                res.render("cursos/editar", {
                     cursos: cursos,
                 });
             } else {
@@ -71,7 +71,7 @@ router.post('/actualizar/', function (req, res, next) {
     cursosModel
         .actualizar(id, { nombre, precio })
         .then(() => {
-            res.redirect("/cursoss");
+            res.redirect("/cursos");
         })
         .catch(err => {
             return res.status(500).send("Error actualizando cursos");

@@ -6,14 +6,15 @@ const profesorModel = require("../models/profesor");
 router.get('/', function (req, res, next) {
     profesorModel
         .obtener()
-        .then(profesores => {
+        .then(profesor => {
             res.render("profesor/ver", {
-                profesores: profesores,
+                profesor: profesor,
             });
         })
         .catch(err => {
-            return res.status(500).send("Error obteniendo profesores");
+            return res.status(500).send("Error obteniendo profesor");
         });
+
 });
 
 router.get('/agregar', function (req, res, next) {
@@ -21,12 +22,12 @@ router.get('/agregar', function (req, res, next) {
 });
 
 router.post('/insertar', function (req, res, next) {
-    const { nombre, contraseña, telefono, email, area_principal, area_alternativa, id_usuario, identificador } = req.body;
-    if (!nombre || !contraseña || !telefono || !email || !area_principal || !area_alternativa || !id_usuario || !identificador) {
-        return res.status(500).send("Faltan datos requeridos");
+    const { nombre, apellido, edad } = req.body;
+    if (!nombre || !apellido || !edad) {
+        return res.status(500).send("Faltan datos");
     }
     profesorModel
-        .insertar(nombre, contraseña, telefono, email, area_principal, area_alternativa, id_usuario, identificador)
+        .insertar({ nombre, apellido, edad })
         .then(idProfesorInsertado => {
             res.redirect("/profesor");
         })
@@ -64,12 +65,12 @@ router.get('/editar/:id', function (req, res, next) {
 });
 
 router.post('/actualizar/', function (req, res, next) {
-    const { id, nombre, contraseña, telefono, email, area_principal, area_alternativa, id_usuario, identificador } = req.body;
-    if (!id || !nombre || !contraseña || !telefono || !email || !area_principal || !area_alternativa || !id_usuario || !identificador) {
-        return res.status(500).send("No hay suficientes datos");
+    const { id, nombre, apellido, edad } = req.body;
+    if (!nombre || !apellido || !edad || !id) {
+        return res.status(500).send("Faltan datos");
     }
     profesorModel
-        .actualizar(id, nombre, contraseña, telefono, email, area_principal, area_alternativa, id_usuario, identificador)
+        .actualizar(id, { nombre, apellido, edad })
         .then(() => {
             res.redirect("/profesor");
         })
